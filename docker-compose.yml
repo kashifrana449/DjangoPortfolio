@@ -1,0 +1,25 @@
+version: "3.9"
+
+services:
+  db:
+    image: mysql
+    volumes:
+      - ../data/db:/var/lib/mysql/
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=django
+      - MYSQL_USER=mysql
+      - MYSQL_PASSWORD=mysql
+  web:
+    build: .
+#    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    environment:
+      - MYSQL_NAME=django
+      - MYSQL_USER=mysql
+      - MYSQL_PASSWORD=mysql
+    depends_on:
+      - db
