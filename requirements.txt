@@ -1,2 +1,7 @@
+asgi_redis
+channels==3.0.5
+channels_redis
 Django
+djangorestframework
+djoser
 mysqlclient
